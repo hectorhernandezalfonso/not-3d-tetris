@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- PLEASE NO CHANGES BELOW THIS LINE (UNTIL I SAY SO) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- OK, YOU CAN MAKE CHANGES BELOW THIS LINE AGAIN -->
+
+</head>
+
+<body>
+<div
+  class="min-h-[420] h-full  bg-black bg-[url('../assets/img/FONDO.jpg')] bg-no-repeat bg-cover">
+
+  <div class="min-h-screen w-full justify-center items-center py-24 my-24">
+
+    <div class="grid grid-cols-2 gap-5">
+      <!-- Left side of the grid for title related things -->
+      <div class="flex flex-col justify-center items-center col-span-1">
+        <h1 class="text-4xl text-black" title-tetris>
+          <img src="assets/img/Title_soviet.jpg" alt="title-tetris"
+               class="md:w-full w-[200px] title-tetris">
+        </h1>
+        <p class="text-white">Score: <span id="score">0</span></p>
+      </div>
+
+      <!-- Right side of the grid for instructions -->
+      
+      <div class="flex flex-col justify-center items-center col-span-1">
+        
+        <h2 class="text-4xl text-black font-bold pb-5">Instrucciones</h2>
+        
+        <p class="text-black pb-2">Utilice las siguientes teclas para girar las fichas </p>
+        
+        <div class="justify-center items-center gap-5 flex flex-row pb-2">
+          <div class=" justify-center items-center boder-black border  px-3 py-2 rounded-lg text-black min-w-[40px]">A</div>
+          <div class=" justify-center items-center boder-black border  px-3 py-2 rounded-lg text-black min-w-[40px]">S</div>
+          <div class=" justify-center items-center boder-black border  px-3 py-2 rounded-lg text-black min-w-[40px]">D</div>
+        </div>
+
+        <p class="text-black pb-2">Utilice las siguientes teclas para desplazar las fichas a través del tablero</p>
+        <div class="justify-center items-center gap-5 flex flex-row">
+          <img class="w-[150px]" src="../assets/icons/arrows_black.png" alt="upArrow">
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center items-center bg">
+        <a href="pages/tetris.html">
+            <button id="start"
+                    class="w-[350px] h-[60px] hover:scale-[1.05] easy-out duration-300 font-bold text-xl border-2 border-[#B22626] text-black p-3 rounded-md">Jugar</button>
+          </a>
+          
+          
+      </div>
+    
+
+  </div>
+<!-- Centering the button at the bottom of the screen -->
+
+
+  <script language="javascript" type="text/javascript" src="../scripts/main.js"></script>
+</body>
+</html>
