@@ -121,20 +121,20 @@ function keyPressed() {
   }
 
   /* ----------------------move over it self------------------------- */
-  if (key === "a") {
+  if (key === "a" || key === "d") {
     aux_shape = token.rotateY();
     if (board.checkCollision(aux_shape, token.getPosition()))
       token.shape = aux_shape;
     aux_shape = null;
   }
 
-  if (key === "s") {
+  if (key === "s"  || key === "w") {
     aux_shape = token.rotateZ();
     if (board.checkCollision(aux_shape, token.getPosition()))
       token.shape = aux_shape;
     aux_shape = null;
   }
-  if (key === "d") {
+  if (key === "z") {
     aux_shape = token.rotateX();
     if (board.checkCollision(aux_shape, token.getPosition()))
       token.shape = aux_shape;
