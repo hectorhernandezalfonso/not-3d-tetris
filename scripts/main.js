@@ -1,40 +1,33 @@
-document.getElementById("pause").addEventListener("click", togglePause);
-document.getElementById("restart").addEventListener("click", restartGame);
+document.getElementById("openModal").addEventListener("click", function () {
+  document.getElementById("modal").classList.remove("hidden");
+});
 
-let intervalId;
-let speed = 1000; // Initial speed, adjust as needed
+document.getElementById("closeModal").addEventListener("click", function () {
+  document.getElementById("modal").classList.add("hidden");
+});
+
 let pause = false;
-
-function timeController(speed) {
-  clearInterval(intervalId);
-  intervalId = setInterval(gameTick, speed);
-}
-
-function gameTick() {
-  // Your game's main loop code
-  console.log("Game tick");
-}
-
-function togglePause() {
+document.getElementById("pause").addEventListener("click", function () {
   pause = !pause;
-  let pauseButton = document.getElementById("pause");
   if (pause) {
-    pauseButton.textContent = 'Continue';
+    let lineElement = document.getElementById("pause");
+    lineElement.textContent = `Continuar`;
     clearInterval(intervalId);
   } else {
-    pauseButton.textContent = 'Pause';
+    let lineElement = document.getElementById("pause");
+    lineElement.textContent = `Pausa`;
     timeController(speed);
   }
-}
+});
 
-function restartGame() {
-  document.getElementById("myModalGameOver").classList.add("hidden");
-  // Reset game state and restart the game loop
-  timeController(speed);
-  // Reset score and lines
-  document.getElementById("score").textContent = '0';
-  document.getElementById("lines").textContent = '0';
-}
 
-// Initial call to start the game
-timeController(speed);
+
+let imageUrl = null;
+document.getElementById("container").addEventListener("",()=>{
+  if(imageUrl == null) {
+    document.body.style.backgroundImage = imageUrl;
+  }
+})
+
+
+

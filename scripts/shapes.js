@@ -1,23 +1,25 @@
 class Shape {
-  constructor(boardDimentions, scale) {
-    //this.shape
-    this.width = boardDimentions.width;
-    this.deep = boardDimentions.deep;
-    this.hight = boardDimentions.hight;
-    this.position = {
-      x: this.width >= 8 ? int(this.width / 2) : 0,
-      y: this.hight + 1,
-      z: int(this.width / 2),
-    };
-    this.scale = scale;
-    this.collition = false;
-    this.color = (203, 0, 243);
-    this.shape = undefined;
-  }
+    constructor(boardDimentions, scale) {
+      //this.shape
+      this.width = boardDimentions.width;
+      this.deep = boardDimentions.deep;
+      this.hight = boardDimentions.hight;
+      this.position = {
+        x: this.width >= 8 ? int(this.width / 2) : 0,
+        y: this.hight + 1,
+        z: int(this.width / 2),
+      };
+      this.scale = scale;
+      this.collition = false;
+      this.color = (203, 0, 243);
+      this.shape = undefined;
+    }
+  
+    getPosition() {
+      return this.position;
+    }
 
-  getPosition() {
-    return this.position;
-  }
+
   getColor(idShape) {
     const colors = {
       0: color(0, 0, 0, 0),       // Transparent or no color
@@ -75,7 +77,7 @@ class Shape {
   }
   moveDown() {
     let nextPosition = this.position.y - 1;
-    if (nextPosition >= 0) this.position.y = nextPosition;
+    if (nextPosition >= -3) this.position.y = nextPosition;
   }
   moveRight() {
     let nextPosition = this.position.x + 1;
@@ -103,37 +105,63 @@ class Shape {
     this.color = "white";
     this.shape = undefined;
   }
-  rotateY() {
+
+  rotateY(direction) {
+    const real_shape = this.shape;
     if (this.shape) {
-      const real_shape = this.shape;
-      let aux_shape = new Array(4)
+      let result = new Array(4)
         .fill()
         .map(() => new Array(4).fill().map(() => new Array(4).fill(0)));
+
       for (let w = 0; w < 4; w++) {
         for (let d = 0; d < 4; d++) {
           for (let h = 0; h < 4; h++) {
-            aux_shape[w][d][h] = real_shape[d][w][h];
+            if (direction == "right") result[d][3 - w][h] = real_shape[w][d][h];
+            else result[3-d][w][h] = real_shape[w][d][h];
           }
         }
       }
-      return aux_shape;
+      return result;
     }
+    return real_shape;
   }
-  rotateZ() {
+  rotateZ(direction) {
+    const real_shape = this.shape;
     if (this.shape) {
-      const real_shape = this.shape;
-      let aux_shape = new Array(4)
+      let result = new Array(4)
         .fill()
         .map(() => new Array(4).fill().map(() => new Array(4).fill(0)));
+
       for (let w = 0; w < 4; w++) {
         for (let d = 0; d < 4; d++) {
           for (let h = 0; h < 4; h++) {
-            aux_shape[w][d][h] = real_shape[h][d][w];
+            if (direction == "up") result[3-h][d][w] = real_shape[w][d][h];
+            else result[h][d][3-w] = real_shape[w][d][h];
           }
         }
       }
-      return aux_shape;
+      return result;
     }
+    return real_shape;
+  }
+  rotateX(direction) {
+    const real_shape = this.shape;
+    if (this.shape) {
+      let result = new Array(4)
+        .fill()
+        .map(() => new Array(4).fill().map(() => new Array(4).fill(0)));
+
+      for (let w = 0; w < 4; w++) {
+        for (let d = 0; d < 4; d++) {
+          for (let h = 0; h < 4; h++) {
+            if (direction == "up") result[w][3-h][d] = real_shape[w][d][h];
+            else result[w][h][3-d] = real_shape[w][d][h];
+          }
+        }
+      }
+      return result;
+    }
+    return real_shape;
   }
 
 

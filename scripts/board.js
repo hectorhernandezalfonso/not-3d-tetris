@@ -32,6 +32,7 @@ class Board {
     return colors[idShape];
   }
 
+  
   draw() {
     for (let w = this.width - 1; w >= 0; w--) {
       for (let d = this.deep - 1; d >= 0; d--) {
@@ -44,7 +45,7 @@ class Board {
             if (cellValue != "-1") {
               fill(this.getColor(cellValue));
             } else {
-              fill(    133, 0, 60  );
+              fill(133,0,60);
               stroke(153);
             }
             box(this.scale);
@@ -54,7 +55,6 @@ class Board {
       }
     }
   }
-  
   saveState(shape, position) {
     for (let w = 0; w < 4; w++) {
       for (let d = 0; d < 4; d++) {
@@ -77,10 +77,11 @@ class Board {
             //fuara de los limites, sin contar la ficha naciente
             return false;
           }
-          //las partes de la ficha no toquen con otras
+          //las partes de la ficha no toquen con otras 
           else if (shape[w][d][h] != 0 && this.board3D[w_aux][d_aux][h_aux]!=0 && this.board3D[w_aux][d_aux][h_aux]!=undefined){
             return false;
           }
+          
         }
       }
     }
@@ -134,7 +135,6 @@ class Board {
   }
 
   drawTestFloor(h) {
-    console.log("creating");
     for (let w = this.width - 1; w >= 0; w--) {
       for (let d = this.deep - 1; d >= 0; d--) {
         this.board3D[w][d][h] = 3;
