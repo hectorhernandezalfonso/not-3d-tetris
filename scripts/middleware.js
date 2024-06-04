@@ -121,7 +121,7 @@ function keyPressed() {
   }
 
   /* ----------------------move over it self------------------------- */
-  if (key === "a") {
+  if (key === "d") {
     let aux_shape = token.rotateY("left");
     if (board.checkCollision(aux_shape, token.getPosition())) {
         token.shape = aux_shape;
@@ -134,7 +134,7 @@ function keyPressed() {
             token.shape = aux_shape;
         }
     }
-    if (key === "d") {
+    if (key === "a") {
         let aux_shape = token.rotateX("up");
         if (board.checkCollision(aux_shape, token.getPosition())) {
             token.shape = aux_shape;
