@@ -1,24 +1,23 @@
 class Shape {
-    constructor(boardDimentions, scale) {
-      //this.shape
-      this.width = boardDimentions.width;
-      this.deep = boardDimentions.deep;
-      this.hight = boardDimentions.hight;
-      this.position = {
-        x: this.width >= 8 ? int(this.width / 2) : 0,
-        y: this.hight + 1,
-        z: int(this.width / 2),
-      };
-      this.scale = scale;
-      this.collition = false;
-      this.color = (203, 0, 243);
-      this.shape = undefined;
-    }
-  
-    getPosition() {
-      return this.position;
-    }
+  constructor(boardDimentions, scale) {
+    //this.shape
+    this.width = boardDimentions.width;
+    this.deep = boardDimentions.deep;
+    this.hight = boardDimentions.hight;
+    this.position = {
+      x: this.width >= 8 ? int(this.width / 2) : 0,
+      y: this.hight + 1,
+      z: int(this.width / 2),
+    };
+    this.scale = scale;
+    this.collition = false;
+    this.color = (224, 242, 0);
+    this.shape = undefined;
+  }
 
+  getPosition() {
+    return this.position;
+  }
 
   getColor(idShape) {
     const colors = {
@@ -109,22 +108,46 @@ class Shape {
   rotateY(direction) {
     const real_shape = this.shape;
     if (this.shape) {
-      let result = new Array(4)
-        .fill()
-        .map(() => new Array(4).fill().map(() => new Array(4).fill(0)));
+        let result = new Array(4)
+            .fill()
+            .map(() => new Array(4).fill().map(() => new Array(4).fill(0)));
 
-      for (let w = 0; w < 4; w++) {
-        for (let d = 0; d < 4; d++) {
-          for (let h = 0; h < 4; h++) {
-            if (direction == "right") result[d][3 - w][h] = real_shape[w][d][h];
-            else result[3-d][w][h] = real_shape[w][d][h];
-          }
+        for (let w = 0; w < 4; w++) {
+            for (let d = 0; d < 4; d++) {
+                for (let h = 0; h < 4; h++) {
+                    if (direction == "right") result[d][3 - w][h] = real_shape[w][d][h];
+                    else result[3 - d][w][h] = real_shape[w][d][h];
+                }
+            }
         }
-      }
-      return result;
+
+        // Check if the rotated shape is within the boundaries of the board
+        if (this.isValidPosition(result, this.position)) {
+            return result;
+        }
     }
     return real_shape;
-  }
+}
+
+isValidPosition(shape, position) {
+    for (let w = 0; w < 4; w++) {
+        for (let d = 0; d < 4; d++) {
+            for (let h = 0; h < 4; h++) {
+                if (shape[w][d][h] != 0) {
+                    let newW = position.x + w;
+                    let newD = position.z + d;
+                    let newH = position.y + h;
+                    if (newW < 0 || newW >= this.width || newD < 0 || newD >= this.deep || newH < 0 || newH >= this.hight) {
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+    return true;
+}
+
+
   rotateZ(direction) {
     const real_shape = this.shape;
     if (this.shape) {

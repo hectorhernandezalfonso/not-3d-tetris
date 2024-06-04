@@ -121,25 +121,25 @@ function keyPressed() {
   }
 
   /* ----------------------move over it self------------------------- */
-  if (key === "a" ){//|| key === "d") {
-    aux_shape = token.rotateY();
-    if (board.checkCollision(aux_shape, token.getPosition()))
-      token.shape = aux_shape;
-    aux_shape = null;
-  }
+  if (key === "a") {
+    let aux_shape = token.rotateY("left");
+    if (board.checkCollision(aux_shape, token.getPosition())) {
+        token.shape = aux_shape;
+        }
+    }
 
-  if (key === "s"  ){//|| key === "w") {
-    aux_shape = token.rotateZ();
-    if (board.checkCollision(aux_shape, token.getPosition()))
-      token.shape = aux_shape;
-    aux_shape = null;
-  }
-  if (key === "d") {
-    aux_shape = token.rotateX();
-    if (board.checkCollision(aux_shape, token.getPosition()))
-      token.shape = aux_shape;
-    aux_shape = null;
-  }
+    if (key === "s") {
+        let aux_shape = token.rotateZ("up");
+        if (board.checkCollision(aux_shape, token.getPosition())) {
+            token.shape = aux_shape;
+        }
+    }
+    if (key === "d") {
+        let aux_shape = token.rotateX("up");
+        if (board.checkCollision(aux_shape, token.getPosition())) {
+            token.shape = aux_shape;
+        }
+    }
 }
 
 function keyReleased() {
