@@ -105,7 +105,23 @@ class Shape {
     this.shape = undefined;
   }
 
-  rotateY(direction) {
+  rotateY() {
+    if (this.shape) {
+      const real_shape = this.shape;
+      let aux_shape = new Array(4)
+        .fill()
+        .map(() => new Array(4).fill().map(() => new Array(4).fill(0)));
+      for (let w = 0; w < 4; w++) {
+        for (let d = 0; d < 4; d++) {
+          for (let h = 0; h < 4; h++) {
+            aux_shape[w][d][h] = real_shape[d][w][h];
+          }
+        }
+      }
+      return aux_shape;
+    }
+  }
+  /*rotateY(direction) {
     const real_shape = this.shape;
     if (this.shape) {
         let result = new Array(4)
@@ -127,7 +143,7 @@ class Shape {
         }
     }
     return real_shape;
-}
+}*/
 
 isValidPosition(shape, position) {
     for (let w = 0; w < 4; w++) {
@@ -148,6 +164,66 @@ isValidPosition(shape, position) {
 }
 
 
+  rotateZ(direction) {
+    const real_shape = this.shape;
+    if (this.shape) {
+      let result = new Array(4)
+        .fill()
+        .map(() => new Array(4).fill().map(() => new Array(4).fill(0)));
+
+      for (let w = 0; w < 4; w++) {
+        for (let d = 0; d < 4; d++) {
+          for (let h = 0; h < 4; h++) {
+            if (direction == "up") result[3-h][d][w] = real_shape[w][d][h];
+            else result[h][d][3-w] = real_shape[w][d][h];
+          }
+        }
+      }
+      return result;
+    }
+    return real_shape;
+  }
+
+
+  /*rotateZ() {
+    if (this.shape) {
+      const real_shape = this.shape;
+      let aux_shape = new Array(4)
+        .fill()
+        .map(() => new Array(4).fill().map(() => new Array(4).fill(0)));
+      for (let w = 0; w < 4; w++) {
+        for (let d = 0; d < 4; d++) {
+          for (let h = 0; h < 4; h++) {
+            aux_shape[w][d][h] = real_shape[h][d][w];
+          }
+        }
+      }
+      return aux_shape;
+    }
+  }*/
+
+
+  rotateX(direction) {
+    const real_shape = this.shape;
+    if (this.shape) {
+      let result = new Array(4)
+        .fill()
+        .map(() => new Array(4).fill().map(() => new Array(4).fill(0)));
+
+      for (let w = 0; w < 4; w++) {
+        for (let d = 0; d < 4; d++) {
+          for (let h = 0; h < 4; h++) {
+            if (direction == "up") result[w][3-h][d] = real_shape[w][d][h];
+            else result[w][h][3-d] = real_shape[w][d][h];
+          }
+        }
+      }
+      return result;
+    }
+    return real_shape;
+  }
+
+  
   rotateZ(direction) {
     const real_shape = this.shape;
     if (this.shape) {
